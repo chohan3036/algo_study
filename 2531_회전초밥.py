@@ -1,15 +1,20 @@
 import sys
 read = lambda: sys.stdin.readline().strip()
 
-
 #n, d, k, c = map(int, read().split())
 #susi = [int(read()) for _ in range(n)]
 n, d, k, c = 8, 30, 4, 30
-susi = [7, 9, 7, 30, 2, 7, 9, 25]
+susi = [12, 9, 7, 30, 2, 7, 9, 25]
+susi += susi[: k - 1]
 
-maxd = 1
-can = []
-for i in range(n - 4):
-    can.append(set(susi[i: i + 4]))
+susi_list = []
 
-print(maxd, can)
+
+print(susi_list)
+ans = 1
+coupon = 0
+for susi in susi_list:
+    if c not in susi:
+        coupon = 1
+
+print(ans + coupon)
