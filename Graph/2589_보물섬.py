@@ -31,7 +31,6 @@ def bfs(x, y, depth):
 
 r, c = map(int, read().split())
 board = [list(read()) for _ in range(r)]
-dist = [[-1 for _ in range(c)] for _ in range(r)]
 max_dist = -1
 
 for i in range(r):

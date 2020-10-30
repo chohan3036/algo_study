@@ -1,0 +1,31 @@
+import sys
+from collections import Counter
+read = lambda: sys.stdin.readline().strip()
+
+
+def solution1(clothes):
+    answer = 1
+    cnt = Counter([kind for name, kind in clothes])
+    print(cnt)
+    val = list(cnt.values())
+    for v in val:
+        answer *= v + 1
+    return answer - 1
+
+
+def solution2(clothes):
+    clothes_type = {}
+
+    for c, t in clothes:
+        if t not in clothes_type:
+            clothes_type[t] = 2
+        else:
+            clothes_type[t] += 1
+
+    cnt = 1
+    for num in clothes_type.values():
+        cnt *= num
+
+    return cnt - 1
+
+print(solution2(clothes=[['yellow_hat', 'headgear'], ['blue_sunglasses', 'eyewear'], ['green_turban', 'headgear']]))

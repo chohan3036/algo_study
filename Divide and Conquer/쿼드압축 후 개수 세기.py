@@ -24,9 +24,3 @@ def solution(arr):
     ans = [0, 0]
     quad_check(0, 0, len(arr), arr, ans)
     return ans
-
-
-print(solution([[1,1,0,0],
-                [1,0,0,0],
-                [1,0,0,1],
-                [1,1,1,1]]))

@@ -1,11 +1,12 @@
 n, m = map(int, input().split())
 lessons = list(map(int, input().split()))
 
-left, right = max(lessons), 10000
+left, right = max(lessons), sum(lessons)
 ans = right
 
 while left <= right:
     mid = (left + right) // 2
+
     cnt, cur_bluray = 1, 0
     for lesson in lessons:
         cur_bluray += lesson

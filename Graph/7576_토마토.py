@@ -34,12 +34,10 @@ def solution(m, n, tomatos):
         if -1 in tomatos[i]:
             return -1
         day = max(day, max(tomatos[i]))
-
     return day
 
 
 if __name__ == '__main__':
-    print(solution(6, 4, [[0, 0, -1, 0, 0, 0],
-                          [0, 0, 0, -1, 0, 0],
-                          [0, 0, 0, 0, -1, 0],
-                          [0, 0, 0, 0, 0, -1]]))
+    n, m = map(int, input().split())
+    tomatos = [list(map(int, input().split())) for _ in range(m)]
+    print(solution(n, m, tomatos))

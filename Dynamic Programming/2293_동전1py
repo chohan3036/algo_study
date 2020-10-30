@@ -1,0 +1,19 @@
+# 동적 계획법2 - 2293 동전 1
+# 점화식 개념과 반복문을 사용하여 문제를 풉니다
+
+N, M = map(int, input().split(' ')) # 동전 개수와 나와야 하는 가치 입력
+coins = []
+for i in range(N):
+    coins += [int(input())]         # 동전 종류 입력
+
+dp = [0 for i in range(M + 1)]      # 경우의 수를 담을 리스트
+dp[0] = 1                           # 각 i는 가치
+
+for i in coins:                     # 동전 종류마다 반복
+    for j in range(1, M + 1):       # 가치에 따라 경우의 수를 누적시켜 나감
+        if j - i >= 0:              # 가치보다 동전의 크기가 작으면
+            dp[j] += dp[j - i]      # 그 차이 가치에 대한 경우의 수를 더함
+
+print(dp[M])
+# 입력 : 3 10
+# 출력 : 10
