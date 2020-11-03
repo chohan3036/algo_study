@@ -2,8 +2,12 @@ import sys
 read = lambda: sys.stdin.readline().strip()
 
 str1, str2 = read(), read()
-dp1, dp2 = [0] * len(str1), [0] * len(str2)
+slen = len(str1)
+dp = [[0 for _ in range(slen)] for _ in range(slen)]
 
-for i in range(len(str1)):
-    if str1[i] == str2[i]:
+for i in range(slen):
+    for j in range(slen):
+        if str1[i] == str2[j]:
+            
 
+print(dp)

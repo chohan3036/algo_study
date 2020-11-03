@@ -19,10 +19,8 @@ def bfs(bg, tg, depth, words):
             for i in range(len(cw)):
                 if cw[i] != nw[i]:
                     cnt += 1
-
                 if cnt > 1:
                     break
-
             if cnt > 1:
                 continue
 
