@@ -20,7 +20,7 @@ class BinarySearchTree(object):
         parent = self.root
         # 루트보다 작을 경우
         while node < parent.data:
-            if parent.left:
+            if parent.left.data:
                 parent = parent.left
             else:
                 parent.left = Node(node)
@@ -28,7 +28,7 @@ class BinarySearchTree(object):
 
         # 루트보다 클 경우
         while node > parent.data:
-            if parent.right:
+            if parent.right.data:
                 parent = parent.right
             else:
                 parent.right = Node(node)
