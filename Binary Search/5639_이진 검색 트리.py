@@ -45,7 +45,6 @@ class BinarySearchTree(object):
             node = result.pop()
 
 
-
 nodes = []
 while True:
     input_node = read()
