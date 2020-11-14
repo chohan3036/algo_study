@@ -5,27 +5,27 @@ from collections import deque
 
 def bfs(num):
     q = deque([num])
-    visit = set()
+    visit = {num}
 
     while q:
         cur_parent = q.popleft()
-        for n1, n2 in nodes:
-            if (n1, n2) in visit:
-                continue
-
-            if n1 == cur_parent:
-                parents[n2] = n1
-                q.append(n2)
-                visit.add((n1, n2))
-
-            elif n2 == cur_parent:
-                parents[n1] = n2
-                q.append(n1)
-                visit.add((n1, n2))
+        for node in nodes[cur_parent]:
+            if node not in visit:
+                parents[node] = cur_parent
+                q.append(node)
+                visit.add(node)
 
 
 n = int(read())
-nodes = [tuple(map(int, read().split())) for _ in range(n - 1)]
+nodes = dict()
+for _ in range(n - 1):
+    n1, n2 = map(int, read().split())
+    if n1 not in nodes:
+        nodes[n1] = set()
+    if n2 not in nodes:
+        nodes[n2] = set()
+    nodes[n1].add(n2)
+    nodes[n2].add(n1)
 
 parents = [0 for _ in range(n + 1)]
 bfs(1)
