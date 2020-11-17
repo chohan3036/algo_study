@@ -1,12 +1,22 @@
 import sys
 read = lambda: sys.stdin.readline().strip()
-import heapq as hq
+from collections import deque
 
 for _ in range(int(read())):
     n, idx = map(int, read().split())
     docs = list(map(int, read().split()))
+    docs = deque(enumerate(docs))
 
-    q = []
-    for x, y in enumerate(docs):
-        hq.heappush(q, (-y, x))
+    cnt = 0
+    while docs:
+        cur_max = max([x[1] for x in docs])
+        if docs[0][1] == cur_max:
+            cnt += 1
+            if docs[0][0] == idx:
+                print(cnt)
+                break
+            else:
+                docs.popleft()
 
+        else:
+            docs.rotate(-1)
