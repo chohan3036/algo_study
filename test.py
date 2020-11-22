@@ -1,1 +1,5 @@
-print(1) if type([1, 2, 3]) == list else print(0)
+from collections import deque
+
+list1 = deque([1,2,3,4])
+list1.rotate(-1)
+print(list1)
