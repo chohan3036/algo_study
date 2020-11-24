@@ -1,11 +1,30 @@
-## 백트랙킹 - 연산자 끼워넣기
 import sys
+read = lambda: sys.stdin.readline().strip()
 
-num = int(input())
-num_list = list(map(int, input().split(' ')))
-print(num_list)
-op_list = list(map(int, input().split(' ')))
-print(op_list)
 
-if (num - 1) != sum(op_list): # 예외 처리,,
-    sys.exit()
+def dfs(depth, result):
+    global max_, min_
+
+    if depth >= n - 1:
+        max_ = max(max_, result)
+        min_ = min(min_, result)
+        return
+
+    for i in range(4):
+        if opd[i] > 0:
+            result = int(eval(str(result) + opd_char[i] + str(opt[depth + 1])))
+            opd[i] -= 1
+            dfs(depth + 1, result)
+            result = int(eval(str(result) + opd_char[i - 2] + str(opt[depth + 1])))
+            opd[i] += 1
+
+
+n = int(read())
+opt = list(map(int, read().split()))
+opd = list(map(int, read().split()))
+opd[1], opd[2] = opd[2], opd[1]
+opd_char = ['+', '*', '-', '/']
+max_, min_ = -1000000000, sys.maxsize
+dfs(0, opt[0])
+print(max_)
+print(min_)

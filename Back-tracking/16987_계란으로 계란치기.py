@@ -5,12 +5,11 @@ read = lambda: sys.stdin.readline().strip()
 def egg_break(idx):
     global max_cnt
 
-    if idx >= len(eggs) - 1:
+    if idx > len(eggs) - 1:
         cnt = 0
         for i in range(len(eggs)):
             if eggs[i][0] <= 0:
                 cnt += 1
-        print(cnt)
         max_cnt = max(max_cnt, cnt)
         return
 

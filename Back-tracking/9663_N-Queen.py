@@ -1,6 +1,3 @@
-from copy import deepcopy
-
-
 def queen(x, y):
     for i in range(n):
         k = abs(x - i)
@@ -15,7 +12,6 @@ def queen(x, y):
         # 세로 검사
         if i != x and board[i][y]:
             return False
-
     return True
 
 

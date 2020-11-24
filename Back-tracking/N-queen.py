@@ -1,8 +1,8 @@
 def dfs(n, y, col, diag1, diag2):
-    global answer
+    global ans
 
     if y == n:
-        answer += 1
+        ans += 1
         return
 
     for x in range(n):
@@ -17,11 +17,10 @@ def dfs(n, y, col, diag1, diag2):
         diag2.remove(x - y)
 
 
-def solution(n):
-    global answer
+n = int(input())
+ans = 0
 
-    col, diag1, diag2 = set(), set(), set()
-    answer = 0
-    dfs(n, 0, col, diag1, diag2)
+col, diag1, diag2 = set(), set(), set()
+dfs(n, 0, col, diag1, diag2)
 
-    return answer
+print(ans)
