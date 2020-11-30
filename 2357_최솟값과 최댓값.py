@@ -1,23 +1,30 @@
 import sys
 read = lambda: sys.stdin.readline().strip()
 
+
+def init_min(node, start, end):
+    if start == end:
+        tree[node] = num[start]
+        return tree[node]
+    else:
+        mid = (start + end) // 2
+        tree[node] = min(init_min(node * 2, start, mid),
+                         init_min(node * 2 + 1, mid + 1, end))
+        return tree[node]
+
+
+def find_min(node, left, right):
+    if left <= tree[node] <= right:
+        return tree[node]
+
+
+
+
+
 n, m = map(int, read().split())
 num = [int(read()) for _ in range(n)]
+
 inter = [tuple(map(int, read().split())) for _ in range(m)]
-
-mins = [[0 for _ in range(n)] for _ in range(n)]
-maxs = [[0 for _ in range(n)] for _ in range(n)]
-for i in range(n):
-    for j in range(i, n):
-        if j == 0:
-            mins[i][j], maxs[i][j] = num[i], num[i]
-            continue
-        mins[i][j] = min(mins[i][j - 1], num[j])
-        maxs[i][j] = max(maxs[i][j - 1], num[j])
-
-print(mins)
-print(maxs)
-
-for a, b in inter:
-    a_idx, b_idx = num.index(a), num.index(b)
-    print(mins[a_idx][b_idx], ' ', maxs[a_idx][b_idx])
+tree = [0] * (n * 3)
+init_min(1, 0, n - 1)
+print(tree)
