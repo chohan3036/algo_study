@@ -17,7 +17,8 @@ def find_min(node, left, right):
     if left <= tree[node] <= right:
         return tree[node]
 
-
+    else:
+        return tree[node]
 
 
 
