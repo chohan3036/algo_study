@@ -1,2 +1,3 @@
-list1 = [[] for _ in range(2)]
-print(list1)
+num = 12345
+last = str(num)[-1:]
+print(last)
