@@ -1,6 +1,7 @@
 def solution(p, index):
     ans = ''
-    top = p * index # index번째 수가 포함되는 대략적인 범위
+    # index번째 수가 포함되는 대략적인 범위
+    top = p * index
 
     for i in range(top):
         cur_num = ''

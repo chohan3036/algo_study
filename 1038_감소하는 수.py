@@ -5,14 +5,13 @@ cnt, idx = 0, 1
 flag = False
 
 while cnt <= n - 10:
-    if idx >= 1023:
+    if dp[idx] >= 9876543210:
         cnt += 1
         dp.append(-1)
     else:
         for i in range(int(str(dp[idx])[-1:])):
             cnt += 1
             dp.append(int(str(dp[idx]) + str(i)))
-
         idx += 1
 
 print(dp[n])
