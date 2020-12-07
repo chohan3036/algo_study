@@ -13,6 +13,7 @@ for _ in range(n):
     x, y, r_dir = map(str, read().split())
     x, y = int(y) - 1, int(x) - 1
     robots.append([x, y, r_dir])
+    board[x][y] = 1
 
 for _ in range(m):
     r_idx, comm, rp = map(str, read().split())
@@ -22,19 +23,16 @@ for _ in range(m):
 
 def do_command(i, c, r):
     if c == 'L':
-        robots[i][2] = dirs.index(robots[i][2]) - (rp % 4)
+        robots[i][2] = dirs.index(robots[i][2]) - (r % 4)
 
     elif c == 'R':
-        robots[i][2] = dirs.index(robots[i][2] + (rp % 4))
+        robots[i][2] = dirs.index(robots[i][2] + (r % 4))
 
     else:
         cx, cy = robots[i][0], robots[i][1]
-        nx, ny = cx + int(dx[dirs.index(robots[i][2])] * rp), cy + int(dy[dirs.index(robots[i][2])] * rp)
-        if 0 <= nx < b and 0 <= ny < a:
-            robots[i][0], robots[i][1] = nx, ny
-            return True
-        else:
-            return False
+        nx, ny = cx + int(dx[dirs.index(robots[i][2])]) * r, cy + int(dy[dirs.index(robots[i][2])]) * r
+
+
 
 
 failed = False
