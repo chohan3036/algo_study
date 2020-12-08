@@ -30,8 +30,8 @@ def change(node, start, end, index, target):
         return tree[node]
 
     if start == end:
-        tree[node] = int(tree[node] * target)
-        return tree[node] % mod
+        tree[node] = target
+        return tree[node]
 
     mid = (start + end) // 2
     tree[node] = change(node * 2, start, mid, index, target) * change(node * 2 + 1, mid + 1, end, index, target)
@@ -47,13 +47,7 @@ ans = []
 for _ in range(m + k):
     a, b, c = map(int, read().split())
     if a == 1:
-        diff = 1
-        if num[b - 1] == 0:
-            diff = c
-        else:
-            diff = c / num[b - 1]
-        change(1, 0, n - 1, b - 1, diff)
-        num[b - 1] = c
+        change(1, 0, n - 1, b - 1, c)
     else:
         ans.append(find(1, 0, n - 1, b - 1, c - 1))
 
