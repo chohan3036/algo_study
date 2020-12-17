@@ -5,6 +5,7 @@ N, S = map(int, readline().split())
 mat = list(map(int, readline().split()))
 cnt = 0
 
+
 def dfs(idx, sum_value):
     global cnt
     if idx >= N:

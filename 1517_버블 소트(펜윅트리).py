@@ -5,7 +5,7 @@ import sys
 def fenwick_update(tree, idx, d):
     while idx <= n:
         tree[idx] += d
-        idx += (idx & -idx)
+        idx += (idx & -idx)     # 1인 최하위 비트
 
 
 # fenwick_find : 펜윅 트리인 tree의 start번째 노드부터 end번째 노드까지의 합을 리턴하는 함수
