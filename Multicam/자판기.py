@@ -58,7 +58,7 @@ def buy_action(a, b):
 
 
 # 버튼 class
-class Button(pygame.sprite.Sprite):
+class Button:
     def __init__(self, a, b, x, y):
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed(3)
