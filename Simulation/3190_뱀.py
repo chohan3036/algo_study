@@ -1,45 +1,52 @@
-from collections import deque
 import sys
-readline = lambda: sys.stdin.readline().strip()
+read = lambda: sys.stdin.readline().strip()
+from collections import deque
 
-dx, dy = (0, 0, 1, -1), (1, -1, 0, 0)
-L, D = (3, 2, 0, 1), (2, 3, 1, 0)
+dx, dy = [-1, 0, 1, 0], [0, 1, 0, -1]
+rotate = {'L': [3, 0, 1, 2], 'D': [1, 2, 3, 0]}
 
 
 def snake():
-    x, y, z, d, sec = 0, 0, 0, 0, 0
-    A[0][0] = 2
-    q = deque()
-    q.append((0, 0))
+    global time
+
+    body = deque([(0, 0)])
+    dir = 1
 
     while True:
-        x, y = x + dx[d], y + dy[d]
-        sec += 1
+        time += 1
+        cx, cy = body[0]
+        nx, ny = cx + dx[dir], cy + dy[dir]
 
-        if x < 0 or x >= N or y < 0 or y >= N or A[x][y] == 2:
-            print(sec)
-            return
+        if not 0 <= nx < n or not 0 <= ny < n:
+            return time
 
-        if not A[x][y]:
-            nx, ny = q.popleft()
-            A[nx][ny] = 0
-        A[x][y] = 2
-        q.append((x, y))
-        t, c = B[z]
+        for x, y in body:
+            x += dx[dir]
+            y += dy[dir]
 
-        if sec == int(t):
-            if c == 'L':
-                d = L[d]
-            else:
-                d = D[d]
-            z = (z + 1) % M
+        if (nx, ny) in body:
+            return time
+
+        body.appendleft((nx, ny))
+
+        if (nx, ny) in apples:
+            apples.remove((nx, ny))
+        else:
+            body.pop()
+
+        if paths and time == int(paths[0][0]):
+            l_r = paths[0][1]
+            dir = rotate[l_r][dir]
+            paths.pop(0)
 
 
-N = int(readline())
-A = [[0 for _ in range(N)] for _ in range(N)]
-for _ in range(int(readline())):
-    u, v = map(int, readline().split())
-    A[u - 1][v - 1] = 1
-M = int(readline())
-B = [list(readline().split()) for _ in range(M)]
-snake()
+n = int(read())
+k = int(read())
+apples = []
+for _ in range(k):
+    x, y = map(int, read().split())
+    apples.append((x - 1, y - 1))
+l = int(read())
+paths = [tuple(map(str, read().split())) for _ in range(l)]
+time = 0
+print(snake())

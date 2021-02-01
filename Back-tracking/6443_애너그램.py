@@ -6,7 +6,7 @@ def back_tracking(word, target):
     global avail, ans
 
     if len(word) == target:
-        ans.append(word)
+        ans.add(word)
         return
 
     for a in avail:
@@ -20,7 +20,7 @@ n = int(read())
 words = [read() for _ in range(n)]
 for i in range(n):
     avail = dict()
-    ans = []
+    ans = set()
 
     for char in words[i]:
         if char not in avail:
