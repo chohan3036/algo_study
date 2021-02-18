@@ -1,34 +1,35 @@
-# 트리의 지름 : 어떤 정점으로부터 가장 먼 노드와
-# 그 노드로부터 가장 먼 거리에 있는 노드 사이의 거리
-
 import sys
+from collections import deque
 read = lambda: sys.stdin.readline().strip()
-from collections import defaultdict, deque
 
 
-def bfs(_from):
-    q = deque([_from])
-    visit = set()
-    visit.add(_from)
+def bfs(start):
+    q = deque([start])
+    dist = [0 for _ in range(n)]
+    visited = set()
+    visited.add(start)
 
-    cur_dist = [0 for _ in range(n + 1)]
     while q:
         cur_node = q.popleft()
-        for next_node in tree[cur_node]:
-            cur_dist[next_node] += cur_dist[cur_node] + weights[cur_node][next_node]
-            q.append(next_node)
-            visit.add(next_node)
-    return cur_dist
+        for next_node, w in edges[cur_node]:
+            if next_node not in visited:
+                dist[next_node] = dist[cur_node] + w
+                q.append(next_node)
+                visited.add(next_node)
+    return dist
 
 
 n = int(read())
-tree = defaultdict(set)
-weights = [[0 for _ in range(n + 1)] for _ in range(n + 1)]
+edges = [[] for _ in range(n)]
 for _ in range(n - 1):
-    parent, child, weight = map(int, read().split())
-    tree[parent].add(child)
-    weights[parent][child] = weight
+    u, v, w = map(int, read().split())
+    edges[u - 1].append([v - 1, w])
+    edges[v - 1].append([u - 1, w])
 
-# 루트로부터 가장 먼 노드 찾기
-from_root = bfs(1)
-print(from_root)
+# from root -> first farthest
+dist_from_root = bfs(0)
+left = dist_from_root.index(max(dist_from_root))
+
+# from left -> second farthest
+dist_from_left = bfs(left)
+print(max(dist_from_left))
