@@ -1,44 +1,17 @@
 import sys
-from collections import deque
 read = lambda: sys.stdin.readline().strip()
-
-move = [[(0, 1), (1, 1)],
-        [(1, 0), (1, 1)],
-        [(0, 1), (1, 0), (1, 1)]]
-
-
-def bfs(x, y):
-    q = deque([(x, y, 0)])
-    cnt = 0
-
-    while q:
-        cx, cy, cd = q.popleft()
-        for i in range(len(move[cd])):
-            dx, dy = move[cd][i]
-            nx, ny = cx + dx, cy + dy
-            if not 0 <= nx < n or not 0 <= ny < n:
-                continue
-
-            flag = False
-            if (dx, dy) == (1, 1):
-                for x, y in [(0, 1), (1, 0)]:
-                    gx, gy = cx + x, cx + y
-                    if house[gx][gy]:
-                        flag = True
-                        break
-
-            if nx == n - 1 and ny == n - 1:
-                cnt += 1
-                continue
-
-            if flag:
-                continue
-            q.append((nx, ny, i))
-
-    return cnt
-
 
 n = int(read())
 house = [list(map(int, read().split())) for _ in range(n)]
-print(bfs(0, 1))
+dp = [[[0] * 3 for _ in range(n)] for _ in range(n)]
+dp[0][1][2] = 1
 
+for i in range(n):
+    for j in range(2, n):
+        if house[i][j] != 1:
+            dp[i][j][0] = dp[i][j - 1][0] + dp[i][j - 1][2]
+            dp[i][j][1] = dp[i - 1][j][1] + dp[i - 1][j][2]
+            if house[i - 1][j] != 1 and house[i][j - 1] != 1:
+                dp[i][j][2] = sum(dp[i - 1][j - 1])
+
+print(sum(dp[n - 1][n - 1]))
