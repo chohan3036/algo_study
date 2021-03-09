@@ -1,6 +1,4 @@
-import sys
 from itertools import combinations
-read = lambda: sys.stdin.readline().strip()
 
 
 def solution(answer_sheet, sheets):

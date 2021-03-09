@@ -1,7 +1,3 @@
-import sys
-read = lambda: sys.stdin.readline().strip()
-
-
 def solution(snapshots, transactions):
     accounts = dict()
     for account, amount in snapshots:
@@ -11,7 +7,6 @@ def solution(snapshots, transactions):
     for id, kind, account, amount in transactions:
         if id not in log_id:
             log_id.append(id)
-
             if kind == 'SAVE':
                 if account not in accounts:
                     accounts[account] = int(amount)
@@ -23,6 +18,8 @@ def solution(snapshots, transactions):
     ans = []
     for account in accounts:
         ans.append([account, str(accounts[account])])
+
+    # ascii 로 다 쪼개서 정렬!
 
     return ans
 

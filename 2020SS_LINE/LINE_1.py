@@ -1,7 +1,3 @@
-import sys
-read = lambda: sys.stdin.readline().strip()
-
-
 def solution(inputString):
     open = {'(': 0, '{': 0, '[': 0, '<': 0}
     close = {')': '(', '}': '{', ']': '[', '>': '<'}
