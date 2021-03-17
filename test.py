@@ -1,4 +1,2 @@
-str1 = '150'
-str2 = '100'
+list1 = [2, 0, 2, 2, 2]
 
-print(eval('str1 + str2'))
