@@ -7,7 +7,6 @@ read = lambda: sys.stdin.readline().strip()
 
 n = int(read())
 innings = [list(map(int, read().split())) for _ in range(n)]
-
 ans = 0
 
 
