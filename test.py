@@ -1,6 +1,3 @@
-def flip(u):
-    flipped = list(map(lambda x: '(' if x == ')' else ')', u[1: -1]))
-    return ''.join(flipped)
-
-
-print(flip("()))((()"))
+list1 = [1, 2, 3, 4, 5, 6, 7, 8]
+list1[1:3] += [1] * (3 - 1)
+print(list1)
